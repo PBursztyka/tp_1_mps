@@ -10,23 +10,36 @@ function Pencil(ctx, drawing, canvas) {
 	// Liez ici les widgets à la classe pour modifier les attributs présents ci-dessus.
 
 
-
 	new DnD(canvas, this);
 
 	// Implémentez ici les 3 fonctions onInteractionStart, onInteractionUpdate et onInteractionEnd
 
-	this.OnInteractionStart = function (dnd) {
+	this.onInteractionStart = function (dnd) {
+
+		this.currentShape = new Rectangle();
 
 	}.bind(this);
 
-	this.OnInteractionUpdate = function (dnd) {
+	this.onInteractionUpdate = function (dnd) {
+
+		this.currentShape = new Rectangle(dnd.initX, dnd.initY, this.currColour, 
+			this.currLineWidth, dnd.finalY -dnd.initY, dnd.finalX -dnd.initX);
+		drawing.paint(ctx, canvas);
+		this.currentShape.paint(ctx);
 
 	}.bind(this);
 
-	this.OnInteractionEnd = function (dnd) {
 
-	}.bind(this);
+	//	console.log('update')
 
+		
+	this.onInteractionEnd = function (dnd) {
+		
+		this.currentShape = new Rectangle(dnd.initX, dnd.initY, this.currColour, 
+			this.currLineWidth, dnd.finalY -dnd.initY, dnd.finalX -dnd.initX);
+		drawing.paint(ctx, canvas);
+
+	}.bind(this)
 
 
 };

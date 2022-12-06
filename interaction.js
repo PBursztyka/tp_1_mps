@@ -11,6 +11,7 @@
     this.finalX=0;
     this.finalY=0;
     this.isclick=false;
+    this.interactor=interactor;
 
     // Developper les 3 fonctions gérant les événements
 
@@ -19,6 +20,7 @@
       this.initX=pos.x;
       this.initY=pos.y;
       this.isclick=true;
+      this.interactor.onInteractionStart(this);
       console.log(evt);
     }.bind(this);
 
@@ -27,6 +29,7 @@
       this.finalX=pos.x;
       this.finalY=pos.y;
       this.isclick=true;
+      this.interactor.onInteractionUpdate(this);
       console.log(evt);
     }.bind(this);
 
@@ -35,6 +38,7 @@
       this.finalX=pos.x;
       this.finalY=pos.y;
       this.isclick=false;
+      this.interactor.onInteractionEnd(this);
       console.log(evt);
     }.bind(this);
 
